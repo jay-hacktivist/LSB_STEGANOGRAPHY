@@ -2,7 +2,7 @@
 from PIL import Image, ImageFont, ImageDraw
 import textwrap
 
-def decode_image(file_location="images/encoded_sample.png"):
+def decode_image(file_location="image/encoded_image.png"):
     """Decodes the hidden message in an image
 
     file_location: the location of the image file to decode. By default is the provided encoded image in the images folder
@@ -22,7 +22,7 @@ def decode_image(file_location="images/encoded_sample.png"):
                 pixels[i, j] = (255, 255, 255)
             else:
                 pixels[i, j] = (0,0,0)
-    decoded_image.save("images/decoded_image.png")
+    decoded_image.save("image/decoded_image.png")
 
 def write_text(text_to_write, image_size):
     """Writes text to an RGB image. Automatically line wraps
@@ -40,7 +40,7 @@ def write_text(text_to_write, image_size):
         offset += 10
     return image_text
 
-def encode_image(text_to_encode, template_image="images/samoyed.jpg"):
+def encode_image(text_to_encode, template_image="image/samoyed.jpg"):
     """Encodes a text message into an image
 
     text_to_encode: the text to encode into the template image
@@ -73,8 +73,8 @@ def encode_image(text_to_encode, template_image="images/samoyed.jpg"):
                 red_template_pix = red_template_pix[:-1] + '0'
             pixels[i, j] = (int(red_template_pix, 2), green_template.getpixel((i,j)), blue_template.getpixel((i,j)))
 
-    encoded_image.save("images/encoded_image.png")
+    encoded_image.save("image/encoded_image.png")
 
 if __name__ == '__main__':
+    encode_image("KJ_CTF{Y0U_H4V3_F0UND_BY_L5B}")
     decode_image()
-    encode_image("hello world")
